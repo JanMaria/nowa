@@ -1,11 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}YT_CRUD Articles{% endblock %}
+{% block title %}{{ article.title }}{% endblock %}
 
 {% block body %}
   <h1>{{ article.title }}</h1>
-  <h1>{{ article.title }}</h1>
-  <h1>{{ article.body }}</h1>
+  <p>{{ article.body }}</p>
   <hr>
   <a href="/">Go Back</a>
 {% endblock %}
