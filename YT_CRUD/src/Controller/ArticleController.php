@@ -65,7 +65,7 @@ class ArticleController extends AbstractController
   public function edit(Request $request, Article $article)
   {
     // $article = new Article();
-    //$article = $this->getDoctrine()->getRepository(Article::class)->find($id);
+    // $article = $this->getDoctrine()->getRepository(Article::class)->find($id);
 
     $form = $this->createFormBuilder($article)
     ->add('title', TextType::class, ['attr' => ['class' => 'form-control']])
@@ -87,7 +87,7 @@ class ArticleController extends AbstractController
 
   // tutaj stara metoda bez użycia ParamConverter'a
   // /**
-  // * @Route("/article/{id}", name="article_show")
+  // * @Route("/article/{id<\d+>}", name="article_show")
   // * @Method({"GET"})
   // */
   // public function show($id)
@@ -99,7 +99,7 @@ class ArticleController extends AbstractController
 
   // tutaj, o ile dobrze rozumiem, niejawnie używam ParamConverter'a
   // /**
-  // * @Route("/article/{id}", name="article_show")
+  // * @Route("/article/{id<\d+>}", name="article_show")
   // * @Method({"GET"})
   // */
   // public function show(Article $article)
@@ -109,7 +109,7 @@ class ArticleController extends AbstractController
 
   // a tutaj z jawnym użyciem ParamConverter'a
   /**
-  * @Route("/article/{articleID}", name="article_show")
+  * @Route("/article/{articleID<\d+>}", name="article_show")
   * @Method({"GET"})
   * @ParamConverter("article", options={"mapping"={"articleID"="id"}})
   */
@@ -119,20 +119,20 @@ class ArticleController extends AbstractController
   }
 
   /**
-   * @Route("/article/delete/{id}")
-   * @Method({"DELETE"})
-   */
-   public function delete(Request $request, Article $article)
-   {
-     // $article = $this->getDoctrine()->getRepository(Article::class)->find($id);
+  * @Route("/article/delete/{id}")
+  * @Method({"DELETE"})
+  */
+  public function delete(Request $request, Article $article)
+  {
+    // $article = $this->getDoctrine()->getRepository(Article::class)->find($id);
 
-     $entityManager = $this->getDoctrine()->getManager();
-     $entityManager->remove($article);
-     $entityManager->flush();
+    $entityManager = $this->getDoctrine()->getManager();
+    $entityManager->remove($article);
+    $entityManager->flush();
 
-     $response = new Response();
-     $response->send();
-   }
+    $response = new Response();
+    $response->send();
+  }
 
   // /**
   //  * @Route("/articles/save")
