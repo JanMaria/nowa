@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_type=1);
+declare(strict_types=1);
 
 namespace App\Entity;
 
@@ -38,9 +38,10 @@ class Article
     return $this->title;
   }
 
-  public function setTitle(string $title)
+  public function setTitle(string $title): self
   {
     $this->title = $title;
+
     return $this;
   }
 
@@ -49,9 +50,10 @@ class Article
     return $this->body;
   }
 
-  public function setBody(string $body)
+  public function setBody(string $body): self
   {
     $this->body = $body;
+
     return $this;
   }
 }

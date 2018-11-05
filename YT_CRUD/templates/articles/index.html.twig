@@ -16,8 +16,13 @@
           <tr>
             <td>{{ article.title }}</td>
             <td>
-              <a href="/article/{{ article.id }}" class="btn btn-primary">Show</a>
-              <a href="/article/edit/{{ article.id }}" class="btn btn-light">Edit</a>
+              <!-- <a href="/article/{{ article.id }}" class="btn btn-primary">Show</a> -->
+              <a href={{ path('article_show', { 'articleID': article.id })}} class="btn btn-primary">Show</a>
+              <!-- <a href="/article/edit/{{ article.id }}" class="btn btn-light">Edit</a> -->
+              <a href={{ path('edit_article', { 'id': article.id })}} class="btn btn-light">Edit</a>
+              <!-- Wydaje mi się, że nie mogę przerobić tego poniżej na path(), bo on nie przekierowuje
+                  do żadnej ścieżki. Uruchamianiem metody ArticleController::delete
+                  zajmuje się tak naprawdę kod w main.js -->
               <a href="#" class="btn btn-danger delete-article" data-id="{{ article.id }}">Delete</a>
             </td>
           </tr>

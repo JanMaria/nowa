@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_type=1);
+declare(strict_types=1);
 
 namespace App\Controller;
 
@@ -38,14 +38,28 @@ class ArticleController extends AbstractController
     $article = new Article();
 
     $form = $this->createFormBuilder($article)
-    ->add('title', TextType::class, ['attr' => ['class' => 'form-control']])
-    ->add('body', TextareaType::class, ['required' => false, 'attr' => ['class' => 'form-control']])
-    ->add('save', SubmitType::class, ['label' => 'Create', 'attr' => ['class' => 'btn btn-primary mt-3']])
+    ->add('title', TextType::class, [
+      'attr' => [
+        'class' => 'form-control'
+        ]
+      ])
+    ->add('body', null, [
+      'required' => false,
+      'attr' => [
+        'class' => 'form-control'
+      ]
+    ])
+    ->add('save', SubmitType::class, [
+      'label' => 'Create',
+      'attr' => [
+        'class' => 'btn btn-primary mt-3'
+      ]
+    ])
     ->getForm();
 
     $form->handleRequest($request);
 
-    if($form->isSubmitted() && $form->isValid()) {
+    if ($form->isSubmitted() && $form->isValid()) {
       $article = $form->getData();
 
       $entityManager = $this->getDoctrine()->getManager();
@@ -68,9 +82,23 @@ class ArticleController extends AbstractController
     // $article = $this->getDoctrine()->getRepository(Article::class)->find($id);
 
     $form = $this->createFormBuilder($article)
-    ->add('title', TextType::class, ['attr' => ['class' => 'form-control']])
-    ->add('body', TextareaType::class, ['required' => false, 'attr' => ['class' => 'form-control']])
-    ->add('save', SubmitType::class, ['label' => 'Update', 'attr' => ['class' => 'btn btn-primary mt-3']])
+    ->add('title', TextType::class, [
+      'attr' => [
+        'class' => 'form-control'
+        ]
+      ])
+    ->add('body', TextareaType::class, [
+      'required' => false,
+      'attr' => [
+        'class' => 'form-control'
+        ]
+      ])
+    ->add('save', SubmitType::class, [
+      'label' => 'Update',
+      'attr' => [
+        'class' => 'btn btn-primary mt-3'
+        ]
+      ])
     ->getForm();
 
     $form->handleRequest($request);
@@ -130,8 +158,9 @@ class ArticleController extends AbstractController
     $entityManager->remove($article);
     $entityManager->flush();
 
-    $response = new Response();
-    $response->send();
+    // $response = new Response();
+    // $response->send();
+    return $this->redirectToRoute('article_list');
   }
 
   // /**
