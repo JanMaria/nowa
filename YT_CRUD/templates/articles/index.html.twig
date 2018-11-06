@@ -20,10 +20,11 @@
               <a href={{ path('article_show', { 'articleID': article.id })}} class="btn btn-primary">Show</a>
               <!-- <a href="/article/edit/{{ article.id }}" class="btn btn-light">Edit</a> -->
               <a href={{ path('edit_article', { 'id': article.id })}} class="btn btn-light">Edit</a>
-              <!-- Wydaje mi się, że nie mogę przerobić tego poniżej na path(), bo on nie przekierowuje
-                  do żadnej ścieżki. Uruchamianiem metody ArticleController::delete
-                  zajmuje się tak naprawdę kod w main.js -->
-              <a href="#" class="btn btn-danger delete-article" data-id="{{ article.id }}">Delete</a>
+              <!-- W sumie to nie za dużo zmieniłem. Wychodzi na to, że ciągle mam js który
+                  pyta "czy jestem pewny". Tylko dużo prostrzy kod niż poprzednio. Nie wiem, czy 
+                  tak jest ok..?-->
+              <a href={{ path('delete_article', {'id': article.id })}}
+                class="btn btn-danger delete-article" onclick="return confirm('Are you sure?')">Delete</a>
             </td>
           </tr>
           {% endfor %}
@@ -35,5 +36,5 @@
 {% endblock %}
 
 {% block javascripts %}
-  <script src="/js/main.js"></script>
+  <!-- <script src="/js/main.js"></script> -->
 {% endblock %}
