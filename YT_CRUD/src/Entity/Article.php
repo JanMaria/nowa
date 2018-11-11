@@ -24,6 +24,21 @@ class Article
   private $title;
 
   /**
+  * @ORM\Column(type="text", length=100)
+  */
+  private $author;
+
+  /**
+  * @ORM\Column(type="datetime")
+  */
+  private $createdAt;
+
+  /**
+  * @ORM\Column(type="boolean")
+  */
+  private $isPublished;
+
+  /**
   * @ORM\Column(type="text")
   */
   private $body;

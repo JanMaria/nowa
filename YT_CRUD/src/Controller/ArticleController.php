@@ -37,25 +37,26 @@ class ArticleController extends AbstractController
   {
     $article = new Article();
 
-    $form = $this->createFormBuilder($article)
-    ->add('title', TextType::class, [
-      'attr' => [
-        'class' => 'form-control'
-        ]
-      ])
-    ->add('body', null, [
-      'required' => false,
-      'attr' => [
-        'class' => 'form-control'
-      ]
-    ])
-    ->add('save', SubmitType::class, [
-      'label' => 'Create',
-      'attr' => [
-        'class' => 'btn btn-primary mt-3'
-      ]
-    ])
-    ->getForm();
+    $form = $this->creatForm(ArticleForm::Class, $article);
+    // $form = $this->createFormBuilder($article)
+    // ->add('title', TextType::class, [
+    //   'attr' => [
+    //     'class' => 'form-control'
+    //     ]
+    //   ])
+    // ->add('body', null, [
+    //   'required' => false,
+    //   'attr' => [
+    //     'class' => 'form-control'
+    //   ]
+    // ])
+    // ->add('save', SubmitType::class, [
+    //   'label' => 'Create',
+    //   'attr' => [
+    //     'class' => 'btn btn-primary mt-3'
+    //   ]
+    // ])
+    // ->getForm();
 
     $form->handleRequest($request);
 
