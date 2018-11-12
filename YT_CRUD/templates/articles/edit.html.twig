@@ -4,6 +4,30 @@
 
 {% block body %}
   {{ form_start(form) }}
-  {{ form_widget(form) }}
+  <div id="title">
+    {{ form_label(form.title, 'Article Title:') }}
+    {# Skąd mogę wiedzieć, co mogę wpisać w atrybucie class? #}
+    {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+  </div>
+  <div id="author">
+    {{ form_label(form.author, 'Article Author:') }}
+    {{ form_widget(form.author, {'attr': {'class': 'form-control'}}) }}
+  </div>
+  <div id="created_at">
+    {{ form_label(form.createdAt, 'Created At:') }}
+    {{ form_widget(form.createdAt)}}
+  </div>
+  <div id="is_published">
+    {{ form_label(form.isPublished, 'Is Published:') }}
+    {{ form_widget(form.isPublished, {'attr': {'class': 'radio-inline'}}) }}
+  </div>
+  <div id="body">
+    {{ form_label(form.body, 'Article Body:') }}
+    {{ form_widget(form.body, {'attr': {'class': "form-control"}}) }}
+  </div>
+  <div id="submit">
+    {{ form_label(form.save, 'Save Article') }}
+    {{ form_widget(form.save, {'attr': {'class': "btn btn-primary"}}) }}
+  </div>
   {{ form_end(form) }}
 {% endblock %}

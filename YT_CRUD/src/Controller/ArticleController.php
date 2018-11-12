@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Form\NewArticleForm;
+use App\Form\EditArticleForm;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -37,26 +39,7 @@ class ArticleController extends AbstractController
   {
     $article = new Article();
 
-    $form = $this->creatForm(ArticleForm::Class, $article);
-    // $form = $this->createFormBuilder($article)
-    // ->add('title', TextType::class, [
-    //   'attr' => [
-    //     'class' => 'form-control'
-    //     ]
-    //   ])
-    // ->add('body', null, [
-    //   'required' => false,
-    //   'attr' => [
-    //     'class' => 'form-control'
-    //   ]
-    // ])
-    // ->add('save', SubmitType::class, [
-    //   'label' => 'Create',
-    //   'attr' => [
-    //     'class' => 'btn btn-primary mt-3'
-    //   ]
-    // ])
-    // ->getForm();
+    $form = $this->createForm(NewArticleForm::class, $article);
 
     $form->handleRequest($request);
 
@@ -82,25 +65,26 @@ class ArticleController extends AbstractController
     // $article = new Article();
     // $article = $this->getDoctrine()->getRepository(Article::class)->find($id);
 
-    $form = $this->createFormBuilder($article)
-    ->add('title', TextType::class, [
-      'attr' => [
-        'class' => 'form-control'
-        ]
-      ])
-    ->add('body', TextareaType::class, [
-      'required' => false,
-      'attr' => [
-        'class' => 'form-control'
-        ]
-      ])
-    ->add('save', SubmitType::class, [
-      'label' => 'Update',
-      'attr' => [
-        'class' => 'btn btn-primary mt-3'
-        ]
-      ])
-    ->getForm();
+    $form = $this->createForm(EditArticleForm::class, $article);
+    // $form = $this->createFormBuilder($article)
+    // ->add('title', TextType::class, [
+    //   'attr' => [
+    //     'class' => 'form-control'
+    //     ]
+    //   ])
+    // ->add('body', TextareaType::class, [
+    //   'required' => false,
+    //   'attr' => [
+    //     'class' => 'form-control'
+    //     ]
+    //   ])
+    // ->add('save', SubmitType::class, [
+    //   'label' => 'Update',
+    //   'attr' => [
+    //     'class' => 'btn btn-primary mt-3'
+    //     ]
+    //   ])
+    // ->getForm();
 
     $form->handleRequest($request);
 

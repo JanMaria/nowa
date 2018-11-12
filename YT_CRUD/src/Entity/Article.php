@@ -60,6 +60,42 @@ class Article
     return $this;
   }
 
+  public function getAuthor(): ?string
+  {
+    return $this->author;
+  }
+
+  public function setAuthor(string $author): self
+  {
+    $this->author = $author;
+
+    return $this;
+  }
+
+  public function getCreatedAt(): ?\DateTime
+  {
+    return $this->createdAt;
+  }
+
+  public function setCreatedAt(\DateTime $createdAt): self
+  {
+    $this->createdAt = $createdAt;
+
+    return $this;
+  }
+
+  public function getIsPublished(): ?bool
+  {
+    return $this->isPublished;
+  }
+
+  public function setIsPublished(bool $isPublished): self
+  {
+    $this->isPublished = $isPublished;
+
+    return $this;
+  }
+
   public function getBody(): ?string
   {
     return $this->body;

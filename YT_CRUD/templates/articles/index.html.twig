@@ -16,13 +16,8 @@
           <tr>
             <td>{{ article.title }}</td>
             <td>
-              <!-- <a href="/article/{{ article.id }}" class="btn btn-primary">Show</a> -->
               <a href={{ path('article_show', { 'articleID': article.id })}} class="btn btn-primary">Show</a>
-              <!-- <a href="/article/edit/{{ article.id }}" class="btn btn-light">Edit</a> -->
               <a href={{ path('edit_article', { 'id': article.id })}} class="btn btn-light">Edit</a>
-              <!-- W sumie to nie za dużo zmieniłem. Wychodzi na to, że ciągle mam js który
-                  pyta "czy jestem pewny". Tylko dużo prostrzy kod niż poprzednio. Nie wiem, czy 
-                  tak jest ok..?-->
               <a href={{ path('delete_article', {'id': article.id })}}
                 class="btn btn-danger delete-article" onclick="return confirm('Are you sure?')">Delete</a>
             </td>
@@ -33,8 +28,4 @@
   {% else %}
     <p>No articles to display</p>
   {% endif %}
-{% endblock %}
-
-{% block javascripts %}
-  <!-- <script src="/js/main.js"></script> -->
 {% endblock %}
