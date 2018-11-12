@@ -15,11 +15,11 @@
   </div>
   <div id="created_at">
     {{ form_label(form.createdAt, 'Created At:') }}
-    {{ form_widget(form.createdAt)}}
+    {{ form_widget(form.createdAt, {'attr': {'class': 'form-group'}})}}
   </div>
   <div id="is_published">
     {{ form_label(form.isPublished, 'Is Published:') }}
-    {{ form_widget(form.isPublished, {'attr': {'class': 'radio-inline'}}) }}
+    {{ form_widget(form.isPublished, {'attr': {'class': 'form-check'}}) }}
   </div>
   <div id="body">
     {{ form_label(form.body, 'Article Body:') }}

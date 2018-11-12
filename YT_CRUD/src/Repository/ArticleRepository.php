@@ -19,6 +19,19 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
+    // Wykomentowany kod poniżej ma chyba takie samo działanie jak ten nie-wykomentowany
+    public function findByPartialTitle($partialTitle)
+    {
+      return $this->getEntityManager()
+        ->createQuery('SELECT a FROM App\Entity\Article a WHERE a.title LIKE \'%'.$partialTitle.'%\'')
+        ->getResult();
+      // return $this->createQueryBuilder('a')
+      //   ->where('a.title LIKE :partialTitle')
+      //   ->setParameter('partialTitle', '%'.$partialTitle.'%')
+      //   ->getQuery()
+      //   ->getResult();
+    }
+
 //    /**
 //     * @return Article[] Returns an array of Article objects
 //     */

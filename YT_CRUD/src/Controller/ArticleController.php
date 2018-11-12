@@ -21,9 +21,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 class ArticleController extends AbstractController
 {
   /**
-  * @Route("/", name="article_list")
-  * @Method({"GET"})
-  */
+   * @Route("/", name="article_list")
+   * @Method({"GET"})
+   */
   public function index()
   {
     $articles = $this->getDoctrine()->getRepository(Article::class)->findAll();
@@ -32,9 +32,21 @@ class ArticleController extends AbstractController
   }
 
   /**
-  * @Route("/article/new", name="new_article")
-  * @Method({"GET", "POST"})
-  */
+   * @Route("/search", name="article_search")
+   * @Method({"GET"})
+   */
+   public function search()
+   {
+     $query = $_GET["query"];
+     $articles = $this->getDoctrine()->getRepository(Article::class)->findByPartialTitle($query);
+     
+     return $this->render('articles/index.html.twig', ['articles' => $articles]);
+   }
+
+  /**
+   * @Route("/article/new", name="new_article")
+   * @Method({"GET", "POST"})
+   */
   public function new(Request $request)
   {
     $article = new Article();
