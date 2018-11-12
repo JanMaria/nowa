@@ -23,7 +23,7 @@ class ArticleRepository extends ServiceEntityRepository
     public function findByPartialTitle($partialTitle)
     {
       return $this->getEntityManager()
-        ->createQuery('SELECT a FROM App\Entity\Article a WHERE a.title LIKE \'%'.$partialTitle.'%\'')
+        ->createQuery("SELECT a FROM App\Entity\Article a WHERE a.title LIKE '%$partialTitle%'")
         ->getResult();
       // return $this->createQueryBuilder('a')
       //   ->where('a.title LIKE :partialTitle')

@@ -39,7 +39,7 @@ class ArticleController extends AbstractController
    {
      $query = $_GET["query"];
      $articles = $this->getDoctrine()->getRepository(Article::class)->findByPartialTitle($query);
-     
+
      return $this->render('articles/index.html.twig', ['articles' => $articles]);
    }
 
@@ -78,25 +78,6 @@ class ArticleController extends AbstractController
     // $article = $this->getDoctrine()->getRepository(Article::class)->find($id);
 
     $form = $this->createForm(EditArticleForm::class, $article);
-    // $form = $this->createFormBuilder($article)
-    // ->add('title', TextType::class, [
-    //   'attr' => [
-    //     'class' => 'form-control'
-    //     ]
-    //   ])
-    // ->add('body', TextareaType::class, [
-    //   'required' => false,
-    //   'attr' => [
-    //     'class' => 'form-control'
-    //     ]
-    //   ])
-    // ->add('save', SubmitType::class, [
-    //   'label' => 'Update',
-    //   'attr' => [
-    //     'class' => 'btn btn-primary mt-3'
-    //     ]
-    //   ])
-    // ->getForm();
 
     $form->handleRequest($request);
 
@@ -159,25 +140,5 @@ class ArticleController extends AbstractController
     // $response->send();
     return $this->redirectToRoute('article_list');
   }
-
-  // /**
-  //  * @Route("/articles/save")
-  //  */
-  //  public function save() {
-  //    $entityManager = $this->getDoctrine()->getManager();
-  //
-  //    $article = new Article();
-  //
-  //    $article
-  //     ->setTitle('Article 999')
-  //     ->setBody('This is the body for article 999');
-  //    // $article->setTitle('Article 6');
-  //    // $article->setBody('This is the body for article six');
-  //
-  //    $entityManager->persist($article);
-  //
-  //    $entityManager->flush();
-  //
-  //    return new Response('Saved an article with the id of '.$article->getId());
-  //  }
+  
 }
