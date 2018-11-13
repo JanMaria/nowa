@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form;
 
+use App\Form\Type\IsPublishedType;
 use App\Entity\Article;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -25,13 +26,14 @@ class EditArticleForm extends AbstractType
         'widget' => 'text',
         'format' => 'dd-MM-yyyy'
       ])
-      ->add('isPublished', ChoiceType::class, [
-        'choices' => [
-          'Tak' => true,
-          'Nie' => false
-        ],
-        'expanded' => true
-      ])
+      ->add('isPublished', new IsPublishedType())
+      // ->add('isPublished', ChoiceType::class, [
+      //   'choices' => [
+      //     'Tak' => true,
+      //     'Nie' => false
+      //   ],
+      //   'expanded' => true
+      // ])
       ->add('body', TextareaType::class)
       ->add('save', SubmitType::class);
   }
