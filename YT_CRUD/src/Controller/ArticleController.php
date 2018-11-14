@@ -77,7 +77,12 @@ class ArticleController extends AbstractController
     // $article = new Article();
     // $article = $this->getDoctrine()->getRepository(Article::class)->find($id);
 
-    $form = $this->createForm(EditArticleForm::class, $article);
+    $form = $this->createForm(EditArticleForm::class, $article, [
+      'isPublishedOptions' => [
+        'tak' => true,
+        'nie' => false
+        ]
+      ]);
 
     $form->handleRequest($request);
 
@@ -140,5 +145,5 @@ class ArticleController extends AbstractController
     // $response->send();
     return $this->redirectToRoute('article_list');
   }
-  
+
 }

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Form;
 
-use App\Form\Type\IsPublishedType;
 use App\Entity\Article;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -26,17 +25,18 @@ class EditArticleForm extends AbstractType
         'widget' => 'text',
         'format' => 'dd-MM-yyyy'
       ])
-      ->add('isPublished', new IsPublishedType())
-      // ->add('isPublished', ChoiceType::class, [
-      //   'choices' => [
-      //     'Tak' => true,
-      //     'Nie' => false
-      //   ],
-      //   'expanded' => true
-      // ])
+      ->add('isPublished', ChoiceType::class, ['choices' => $options['isPublishedOptions']])
       ->add('body', TextareaType::class)
       ->add('save', SubmitType::class);
   }
+
+  public function configureOptions(OptionsResolver $resolver)
+  {
+    $resolver->setDefaults([
+      'isPublishedOptions' => null,
+    ]);
+  }
+
 /**
  * Nie wiem co robi kod poniżej. Przepisałem go z manuala symfony ale jak go
  * wykomentuję to wszystko wydaje się działać tak samo. Btw - czy mogę zadawać
