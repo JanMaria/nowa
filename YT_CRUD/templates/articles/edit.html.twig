@@ -8,14 +8,17 @@
     {{ form_label(form.title, 'Article Title:') }}
     {# Skąd mogę wiedzieć, co mogę wpisać w atrybucie class? #}
     {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+    {{ form_errors(form.title) }}
   </div>
   <div id="author">
     {{ form_label(form.author, 'Article Author:') }}
     {{ form_widget(form.author, {'attr': {'class': 'form-control'}}) }}
+    {{ form_errors(form.author) }}
   </div>
   <div id="created_at">
     {{ form_label(form.createdAt, 'Created At:') }}
     {{ form_widget(form.createdAt, {'attr': {'class': 'form-group'}})}}
+    {{ form_errors(form.createdAt) }}
   </div>
   <div id="is_published">
     {{ form_label(form.isPublished, 'Is Published:') }}
@@ -24,6 +27,7 @@
   <div id="body">
     {{ form_label(form.body, 'Article Body:') }}
     {{ form_widget(form.body, {'attr': {'class': "form-control"}}) }}
+    {{ form_errors(form.body) }}
   </div>
   <div id="submit">
     {{ form_label(form.save, 'Save Article') }}

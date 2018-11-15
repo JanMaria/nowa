@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\FormHandler\FormHandler;
 use App\Entity\Article;
 use App\Form\NewArticleForm;
 use App\Form\EditArticleForm;
@@ -16,7 +17,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-// use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 
 class ArticleController extends AbstractController
 {
@@ -72,11 +72,8 @@ class ArticleController extends AbstractController
   * @Route("/article/edit/{id}", name="edit_article")
   * @Method({"GET", "POST"})
   */
-  public function edit(Request $request, Article $article)
+  public function edit(Request $request, Article $article, FormHandler $handler)
   {
-    // $article = new Article();
-    // $article = $this->getDoctrine()->getRepository(Article::class)->find($id);
-
     $form = $this->createForm(EditArticleForm::class, $article, [
       'isPublishedOptions' => [
         'tak' => true,
@@ -87,8 +84,7 @@ class ArticleController extends AbstractController
     $form->handleRequest($request);
 
     if($form->isSubmitted() && $form->isValid()) {
-      $entityManager = $this->getDoctrine()->getManager();
-      $entityManager->flush();
+      $handler->handleForm($form);
 
       return $this->redirectToRoute('article_list');
     }
@@ -141,8 +137,6 @@ class ArticleController extends AbstractController
     $entityManager->remove($article);
     $entityManager->flush();
 
-    // $response = new Response();
-    // $response->send();
     return $this->redirectToRoute('article_list');
   }
 
