@@ -12,16 +12,17 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class NewArticleForm extends AbstractType
 {
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder
-      ->add('title')
-      ->add('author')
+      ->add('title', TextType::class)
+      ->add('author', TextType::class)
       ->add('createdAt', DateType::class, [
-        'widget' => 'single_text',
+        'widget' => 'text',
         'format' => 'yyyy-MM-dd'
       ])
       ->add('isPublished', CheckboxType::class, [
