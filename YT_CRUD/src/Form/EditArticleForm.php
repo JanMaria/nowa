@@ -28,38 +28,20 @@ class EditArticleForm extends AbstractType
       ->add('title', TextType::class, [
         'constraints' => [
           new NotBlank(),
-          new Regex([
-            'pattern' => '#[A-Z]{1}\w+#',
-            'message' => 'Tytuł piszemy z dużej litery'
-          ]),
         ]
       ])
-      ->add('author', TextType::class, [
-        'constraints' => [
-          new Regex([
-            'pattern' => '#[A-Z]{1}[a-z]+\s[A-Z]{1}[a-z]+#',
-            'message' => 'Pełne imię i pełne nazwisko z dużych liter'
-          ]),
-
-        ]
-      ])
+      ->add('author', TextType::class)
       ->add('createdAt', DateType::class, [
-        'widget' => 'text',
+        'widget' => 'single_text',
         'format' => 'dd-MM-yyyy',
-        'constraints' => [
-          new Date([
-            'message' => 'zły format'
-          ]),
-        ],
+        'invalid_message' => 'Wprowadź datę we wskazanym formacie',
       ])
       ->add('isPublished', ChoiceType::class, ['choices' => $options['isPublishedOptions']])
       ->add('body', TextareaType::class, [
         'constraints' => [
           new Length([
-            'min' => 100,
-            'max' => 200,
-            'minMessage' => 'za mało znaków',
-            'maxMessage' => 'za dużo znaków',
+            'min' => 10,
+            'minMessage' => 'To pole powinno zawierać co najmniej 10 znaków',
           ]),
 
         ]

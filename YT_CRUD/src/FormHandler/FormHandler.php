@@ -16,7 +16,7 @@ class FormHandler
     $this->manager = $manager;
   }
 
-  public function handleForm(Form $form)
+  public function handleForm(Form $form): void
   {
     $id = $form->get('id')->getData();
 

@@ -24,7 +24,7 @@ class ArticleController extends AbstractController
    * @Route("/", name="article_list")
    * @Method({"GET"})
    */
-  public function index():Response
+  public function index(): Response
   {
     $articles = $this->getDoctrine()->getRepository(Article::class)->findAll();
 
@@ -35,7 +35,7 @@ class ArticleController extends AbstractController
    * @Route("/search", name="article_search")
    * @Method({"GET"})
    */
-   public function search(Request $request):Response
+   public function search(Request $request): Response
    {
      // $query = $_GET["query"];
      $query = $request->query->get('query');
@@ -48,7 +48,7 @@ class ArticleController extends AbstractController
    * @Route("/article/new", name="new_article")
    * @Method({"GET", "POST"})
    */
-  public function new(Request $request):Response
+  public function new(Request $request): Response
   {
     $article = new Article();
 
@@ -70,21 +70,21 @@ class ArticleController extends AbstractController
   }
 
   /**
-  * @Route("/article/edit/{id}", name="edit_article")
-  * @Method({"GET", "POST"})
-  */
-  public function edit(Request $request, Article $article, FormHandler $handler):Response
+   * @Route("/article/edit/{id}", name="edit_article")
+   * @Method({"GET", "POST"})
+   */
+  public function edit(Request $request, Article $article, FormHandler $handler): Response
   {
     $form = $this->createForm(EditArticleForm::class, $article, [
       'isPublishedOptions' => [
         'tak' => true,
         'nie' => false
-        ]
-      ]);
+      ]
+    ]);
 
     $form->handleRequest($request);
 
-    if($form->isSubmitted() && $form->isValid()) {
+    if ($form->isSubmitted() && $form->isValid()) {
       $handler->handleForm($form);
 
       return $this->redirectToRoute('article_list');
@@ -121,7 +121,7 @@ class ArticleController extends AbstractController
   * @Method({"GET"})
   * @ParamConverter("article", options={"mapping"={"articleID"="id"}})
   */
-  public function show(Article $article):Response
+  public function show(Article $article): Response
   {
     return $this->render('articles/show.html.twig', ['article' => $article]);
   }
@@ -130,7 +130,7 @@ class ArticleController extends AbstractController
   * @Route("/article/delete/{id}", name="delete_article")
   * @Method({"DELETE"})
   */
-  public function delete(Request $request, Article $article):Response
+  public function delete(Request $request, Article $article): Response
   {
     // $article = $this->getDoctrine()->getRepository(Article::class)->find($id);
 

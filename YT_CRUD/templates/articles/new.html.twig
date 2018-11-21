@@ -4,25 +4,25 @@
 
 {% block body %}
 {{ form_start(form) }}
-  {{ form_label(form.title, 'Article Title:') }}
+  {{ form_label(form.title, 'Tytuł:') }}
   {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
   {{ form_errors(form.title) }}
 
-  {{ form_label(form.author, 'Article Author:') }}
+  {{ form_label(form.author, 'Autor:') }}
   {{ form_widget(form.author, {'attr': {'class': 'form-control'}}) }}
   {{ form_errors(form.author) }}
 
-  {{ form_label(form.createdAt, 'Created At:') }}
-  {{ form_widget(form.createdAt, {'attr': {'class': 'form-group'}})}}
+  {{ form_label(form.createdAt, 'Data utworzenia (dd-mm-rrrr):') }}
+  {{ form_widget(form.createdAt, {'attr': {'class': 'form-control'}})}}
   {{ form_errors(form.createdAt) }}
 
-  {{ form_label(form.isPublished, 'Is Published:') }}
+  {{ form_label(form.isPublished, 'Opublikowano:') }}
   {{ form_widget(form.isPublished, {'attr': {'class': 'form-check'}}) }}
 
-  {{ form_label(form.body, 'Article Body:') }}
+  {{ form_label(form.body, 'Treść:') }}
   {{ form_widget(form.body, {'attr': {'class': "form-control h-200"}}) }}
   {{ form_errors(form.body) }}
 
-  {{ form_label(form.add, 'Save Article') }}
+  {{ form_label(form.add, 'Dodaj') }}
   {{ form_widget(form.add, {'attr': {'class': "btn btn-primary"}}) }}
 {% endblock %}
