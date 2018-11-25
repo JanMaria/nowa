@@ -3,6 +3,7 @@
 {% block title %}New Article{% endblock %}
 
 {% block body %}
+{{ form_start(form) }}
   {{ form_label(form.title, 'Article Title:') }}
   {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
   {{ form_errors(form.title) }}
@@ -24,7 +25,5 @@
 
   {{ form_label(form.add, 'Save Article') }}
   {{ form_widget(form.add, {'attr': {'class': "btn btn-primary"}}) }}
-
-  {{ form_row(form._token) }}
-
+{{ form_end(form) }}
 {% endblock %}
